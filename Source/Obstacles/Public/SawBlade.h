@@ -15,8 +15,25 @@ class OBSTACLES_API ASawBlade : public AObstacle
 	GENERATED_BODY()
 
 protected:
-	virtual void OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
+	
+	UPROPERTY(VisibleAnywhere)
+	float Time = 0;
 
-	virtual void Movement();
+	UPROPERTY(EditAnywhere)
+	FVector InitialPosition;
+
+	UPROPERTY(EditAnywhere)
+	FVector TargetPosition;
+
+	UPROPERTY(EditAnywhere)
+	FVector TotalMovement;
+
+	UPROPERTY(EditAnywhere)
+	float Speed = 1;
+
+	virtual void BeginPlay() override;
+
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 };

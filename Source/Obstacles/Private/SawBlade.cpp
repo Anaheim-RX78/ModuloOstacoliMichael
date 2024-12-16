@@ -3,13 +3,20 @@
 
 #include "SawBlade.h"
 
-void ASawBlade::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void ASawBlade::BeginPlay()
 {
-	Super::OnOverlapBegin(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+	Super::BeginPlay();
+	InitialPosition = GetActorLocation();
+	TargetPosition = GetActorLocation() + TotalMovement;
 }
 
-void ASawBlade::Movement()
+void ASawBlade::Tick(float DeltaTime)
 {
-	
+	Super::Tick(DeltaTime);
+	Time += DeltaTime*Speed;
+
+	float t = FMath::Sin(Time)*0.5f + 0.5f;
+
+	SetActorLocation(FMath::Lerp(InitialPosition, TargetPosition, t));
 }
+

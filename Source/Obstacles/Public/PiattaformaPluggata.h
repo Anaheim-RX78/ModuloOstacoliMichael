@@ -13,7 +13,7 @@ class OBSTACLES_API APiattaformaPluggata : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	APiattaformaPluggata();
+	APiattaformaPluggata(); 
 
 	UPROPERTY(EditAnywhere, Category = "components")
 	UStaticMeshComponent* MeshComponent;
